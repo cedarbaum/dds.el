@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #import "util.h"
 
+// From: https://github.com/syohex/emacs-lua
 void bind_function(emacs_env *env, const char *name, emacs_value Sfun)
 {
     emacs_value Qfset = env->intern(env, "fset");
@@ -11,6 +12,7 @@ void bind_function(emacs_env *env, const char *name, emacs_value Sfun)
     env->funcall(env, Qfset, 2, args);
 }
 
+// From: https://github.com/syohex/emacs-lua
 void provide(emacs_env *env, const char *feature)
 {
     emacs_value Qfeat = env->intern(env, feature);
@@ -20,6 +22,7 @@ void provide(emacs_env *env, const char *feature)
     env->funcall(env, Qprovide, 1, args);
 }
 
+// From: https://phst.eu/emacs-modules.html#copy_string_contents
 bool copy_string_contents (emacs_env *env, emacs_value value, char **buffer, size_t *size) {
   ptrdiff_t buffer_size;
   if (!env->copy_string_contents (env, value, NULL, &buffer_size))
