@@ -7,8 +7,8 @@ Elisp bindings for =dds-bridge=, a double-dummy solver for Contract bridge writt
 ** macOS
 
    1. Build =dds= submodule by following directions in =dds/INSTALL=. Make sure to:
-      a. Use a =MAKEFILE= that builds a shared library object.
-      b. That the produced =libdds.so= file is findable at runtime. For example, it can be placed in =/usr/local/lib/= .
+      + Use a =MAKEFILE= that builds a shared library object.
+      + That the produced =libdds.so= file is findable at runtime. For example, it can be placed in =/usr/local/lib/= .
    2. Run =make=.
    3. Add the root of the project to the =load-path= to ensure that =dds.so= and =dds-util.el= can be found
    4. Run =(require 'dds)= or =(require 'dds-util)= to load the module.
