@@ -11,3 +11,5 @@
          (res-with-hline (cons 'hline res-with-suits))
          (res-with-headers (cons positionHeaders res-with-hline)))
     res-with-headers))
+
+(provide 'dds-util)

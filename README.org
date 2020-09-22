@@ -1,0 +1,39 @@
+* dds.el
+
+Elisp bindings for =dds-bridge=, a double-dummy solver for Contract bridge written in C++.
+
+* Building and loading
+
+** macOS
+
+   1. Build =dds= submodule by following directions in =dds/INSTALL=. Make sure to:
+      a. Use a =MAKEFILE= that builds a shared library object.
+      b. That the produced =libdds.so= file is findable at runtime. For example, it can be placed in =/usr/local/lib/= .
+   2. Run =make=.
+   3. Add the root of the project to the =load-path= to ensure that =dds.so= and =dds-util.el= can be found
+   4. Run =(require 'dds)= or =(require 'dds-util)= to load the module.
+
+* Implemented functions
+
+  - =dds-calc-dd-table-pbn=: Given a hand in PBN notation, returns a 2D Elisp list that represents the maximum number of tricks for each declarer/trump combination.
+    - Each row represents ♠, ♥, ♦, ♣, and NT, respectively.
+    - Each column represents declarer position NORTH, EAST, SOUTH, and WEST, respectively.
+
+* Examples
+
+  Below calculates the maximum number of tricks for each declarer/trump combination and displays the results as an =org-mode= table:
+
+  #+BEGIN_SRC emacs-lisp
+    (add-to-list 'load-path (expand-file-name "~/dev/dds.el/")) ;; Might need to change on your machine.
+    (require 'dds-util)
+    (dds-calc-dd-table-pbn-org-table "N:4.KJ32.842.AQ743 JT987.Q876.AK5.2 AK532.T.JT6.T985 Q6.A954.Q973.KJ6")
+  #+END_SRC
+
+  #+RESULTS:
+  |    | N | E | S | W |
+  |----+---+---+---+---|
+  | ♠  | 6 | 7 | 6 | 7 |
+  | ♥  | 5 | 8 | 5 | 8 |
+  | ♦  | 6 | 7 | 6 | 7 |
+  | ♣  | 9 | 3 | 9 | 3 |
+  | NT | 6 | 6 | 6 | 7 |
